@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3624148645201792557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8761186608049609826}
+  - component: {fileID: 8209653162660897336}
+  m_Layer: 0
+  m_Name: MapChipObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8761186608049609826
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624148645201792557}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8209653162660897336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624148645201792557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3eeb1b039642bc4393fe38929485959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mapChipSpawnDatas:
+  - RoadType: 1
+    MapChipObj: {fileID: 1110257530928857701, guid: 508fc3ce32b79124faf4adfd38bcbf6f,
+      type: 3}
+  - RoadType: 2
+    MapChipObj: {fileID: 77699649026013147, guid: c87f250d612bf8947b3c88cc2a65465f,
+      type: 3}
+  - RoadType: 3
+    MapChipObj: {fileID: 4570371328750639254, guid: b24c040f7d5851d4e9e641c90c28e4c6,
+      type: 3}
+  - RoadType: 4
+    MapChipObj: {fileID: 4296149770106555338, guid: c085eab3b8d3c1c4b9d371380e45eab8,
+      type: 3}
+  - RoadType: 5
+    MapChipObj: {fileID: 3177810506877653463, guid: 8f46514dd405ed94e8bf385c4e76e160,
+      type: 3}
+  - RoadType: 6
+    MapChipObj: {fileID: 6771179758369972423, guid: 092ae9e65cdfd11459b5a9472eca90f0,
+      type: 3}
+  - RoadType: 7
+    MapChipObj: {fileID: 1417640282134019510, guid: 9d2e2cdbfc732a44099ccdbfb9114b93,
+      type: 3}
+  - RoadType: 8
+    MapChipObj: {fileID: 1891648568578114125, guid: c9ca11522f5d5f642ab3274a7a28971c,
+      type: 3}
+  - RoadType: 9
+    MapChipObj: {fileID: 8693323019325751930, guid: 3adec653fc1fa7443be9f1aa32277468,
+      type: 3}
+  - RoadType: 10
+    MapChipObj: {fileID: 2507109501538161534, guid: d48bba261e313134e855b634d73fda77,
+      type: 3}

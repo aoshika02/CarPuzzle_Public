@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94cc182360f981341a7bcba1bbab9ef1, type: 3}
+  m_Name: MapDataScriptableObject
+  m_EditorClassIdentifier: 
+  MapDatas:
+  - Type: 0
+    WrapperRoadTypes:
+    - RoadTypes: 06000000020000000700000005000000
+    - RoadTypes: 01000000020000000200000002000000
+    - RoadTypes: 07000000020000000200000005000000
+    - RoadTypes: 01000000060000000100000001000000
+    StartId: 0
+    StartDirection: 3
+    EndId: 15
+  - Type: 1
+    WrapperRoadTypes:
+    - RoadTypes: 02000000010000000800000006000000090000000a000000
+    - RoadTypes: 040000000400000002000000020000000800000002000000
+    - RoadTypes: 0300000006000000030000000a0000000300000008000000
+    - RoadTypes: 040000000600000005000000030000000100000002000000
+    - RoadTypes: 050000000500000004000000010000000100000002000000
+    - RoadTypes: 070000000600000001000000010000000100000002000000
+    StartId: 0
+    StartDirection: 3
+    EndId: 35

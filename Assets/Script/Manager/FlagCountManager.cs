@@ -8,7 +8,6 @@ public class FlagCountManager : SingletonMonoBehaviour<FlagCountManager>
     [SerializeField] private CanvasGroup _flagCountCanvasGroup;
     [SerializeField] private CanvasGroup _ToTitleCanvasGroup;
     [SerializeField] private TextMeshProUGUI _textMeshProUGUI;
-    [SerializeField] private GameObject _toTitleObj;
 
     protected override void Awake()
     {
@@ -35,7 +34,7 @@ public class FlagCountManager : SingletonMonoBehaviour<FlagCountManager>
         _textMeshProUGUI.text = $"立てた旗の数 ：{_flagCount}";
         await UniTask.WaitForSeconds(0.5f);
         _ToTitleCanvasGroup.alpha = 1;
-        _toTitleObj.SetActive(true);
+        _flagCountCanvasGroup.blocksRaycasts = true;
     }
     /// <summary>
     /// 旗加算
@@ -51,6 +50,6 @@ public class FlagCountManager : SingletonMonoBehaviour<FlagCountManager>
     {
         _flagCountCanvasGroup.alpha = 0;
         _ToTitleCanvasGroup.alpha = 0;
-        _toTitleObj.SetActive(false);
+        _flagCountCanvasGroup.blocksRaycasts = false;
     }
 }

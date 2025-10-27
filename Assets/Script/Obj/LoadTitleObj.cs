@@ -6,9 +6,9 @@ public class LoadTitleObj : MonoBehaviour
 {
     private void Start()
     {
-        InputManager.Instance.TappedAsObservable
+        InputManager.Instance.OnTappedUI
             .Where(obj => obj != null)
-            .Where(obj => obj.Contains(gameObject))
+            .Where(obj => obj == gameObject)
             .Subscribe(_ => OnTapped())
             .AddTo(this);
     }

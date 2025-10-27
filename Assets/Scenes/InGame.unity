@@ -1148,46 +1148,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2886415742325706042, guid: 05fdf221b33416f41a905349d659cd7d,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 219d1283e306b0a4aac2a0316540895d, type: 2}
-    - target: {fileID: 8960993692362216789, guid: 05fdf221b33416f41a905349d659cd7d,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8960993692362216789, guid: 05fdf221b33416f41a905349d659cd7d,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 8960993692362216789, guid: 05fdf221b33416f41a905349d659cd7d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 17.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8960993692362216789, guid: 05fdf221b33416f41a905349d659cd7d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 8966646233235674333, guid: 05fdf221b33416f41a905349d659cd7d,
         type: 3}
       propertyPath: m_Name
       value: FlagCount
-      objectReference: {fileID: 0}
-    - target: {fileID: 8966646233235674333, guid: 05fdf221b33416f41a905349d659cd7d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05fdf221b33416f41a905349d659cd7d, type: 3}
+--- !u!223 &2858096215162972618 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 8420835866979465655, guid: 05fdf221b33416f41a905349d659cd7d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2858096215162972617}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3796958692508309729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1269,6 +1245,16 @@ PrefabInstance:
       propertyPath: _mainCamera
       value: 
       objectReference: {fileID: 330585545}
+    - target: {fileID: 3088895998995092323, guid: e15794cd98cde6e47937a2b6a14117fa,
+        type: 3}
+      propertyPath: _hitCanvases.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3088895998995092323, guid: e15794cd98cde6e47937a2b6a14117fa,
+        type: 3}
+      propertyPath: _hitCanvases.Array.data[0]
+      value: 
+      objectReference: {fileID: 2858096215162972618}
     - target: {fileID: 6129531867931749870, guid: e15794cd98cde6e47937a2b6a14117fa,
         type: 3}
       propertyPath: m_Name

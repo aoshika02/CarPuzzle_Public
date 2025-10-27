@@ -4,13 +4,24 @@ using UniRx;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 public class InputManager : SingletonMonoBehaviour<InputManager>
 {
     [SerializeField] private PlayerAction _playerAction;
     [SerializeField] private Camera _mainCamera;
-
-    private readonly Subject<List<GameObject>> _onTapped = new Subject<List<GameObject>>();
+    [SerializeField] private List<Canvas> _hitCanvases;
     public IObservable<List<GameObject>> TappedAsObservable => _onTapped;
+    private readonly Subject<List<GameObject>> _onTapped = new Subject<List<GameObject>>();
+
+    public IObservable<GameObject> OnTappedUI => _onTappedUI;
+    private readonly Subject<GameObject> _onTappedUI = new Subject<GameObject>();
+    public IReadOnlyReactiveProperty<GameObject> OnOveredUI => _onOveredUI;
+    private readonly ReactiveProperty<GameObject> _onOveredUI = new ReactiveProperty<GameObject>();
+
+    private List<GraphicRaycaster> _raycasters = new List<GraphicRaycaster>();
+    private PointerEventData _pointerEventData;
+    private EventSystem _eventSystem;
 
     protected override void Awake()
     {
@@ -19,6 +30,12 @@ public class InputManager : SingletonMonoBehaviour<InputManager>
             return;
         }
         _playerAction = new PlayerAction();
+
+        foreach (var canvas in _hitCanvases)
+        {
+            _raycasters.Add(canvas.GetComponent<GraphicRaycaster>());
+        }
+        _eventSystem = EventSystem.current;
         OnEnable();
     }
     /// <summary>
@@ -37,11 +54,27 @@ public class InputManager : SingletonMonoBehaviour<InputManager>
         _playerAction.PlayerTouch.Tap.canceled -= OnTapCanceled;
         _playerAction.Disable();
     }
+    private void Update()
+    {
+        UITapEvent(out var outObj);
+        _onOveredUI.Value = outObj;
+    }
     /// <summary>
     /// タップ関連
     /// </summary>
     /// <param name="context"></param>
     private void OnTapCanceled(InputAction.CallbackContext context)
+    {
+        //UI優先でタップ
+        if (UITapEvent(out var outObj))
+        {
+            _onTappedUI.OnNext(outObj);
+            return;
+        }
+        ObjTapEvent();
+    }
+    #region 3DObj
+    private void ObjTapEvent()
     {
         var tmpScreenPos = GetDeviceValue();
         if (tmpScreenPos == null) return;
@@ -60,29 +93,6 @@ public class InputManager : SingletonMonoBehaviour<InputManager>
         {
             _onTapped.OnNext(hitObjs);
         }
-    }
-
-    /// <summary>
-    /// デバイスに応じた座標を返す
-    /// </summary>
-    /// <returns></returns>
-    private Vector3? GetDeviceValue()
-    {
-        //マウスが接続ならマウス座標を返す
-        if (Mouse.current != null)
-        {
-            return Mouse.current.position.ReadValue();
-        }
-        //指の座標を返す
-        if (Touchscreen.current != null)
-        {
-            if (Touchscreen.current.touches.Count == 1)
-            {
-                return Touchscreen.current.primaryTouch.position.ReadValue();
-            }
-        }
-        //例外
-        return null;
     }
     /// <summary>
     /// Raycastを使い、条件に合うGameObjectを返す
@@ -124,5 +134,63 @@ public class InputManager : SingletonMonoBehaviour<InputManager>
             }
         }
         return hisObjs;
+    }
+    #endregion
+
+    private bool UITapEvent(out GameObject outObj)
+    {
+        var tmpScreenPos = GetDeviceValue();
+        outObj = null;
+        if (tmpScreenPos == null) return false;
+        Vector3 screenPos = tmpScreenPos.Value;
+        screenPos.z = _mainCamera.nearClipPlane;
+
+        List<GameObject> uiHits = RaycastUI(screenPos);
+        if (uiHits != null && uiHits.Count > 0)
+        {
+            outObj = uiHits[0];
+            return true;
+        }
+        return false;
+    }
+    private List<GameObject> RaycastUI(Vector2 screenPosition)
+    {
+        _pointerEventData = new PointerEventData(_eventSystem)
+        {
+            position = screenPosition
+        };
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        List<List<RaycastResult>> resultDatas = new List<List<RaycastResult>>();
+        foreach (var cast in _raycasters)
+        {
+            cast.Raycast(_pointerEventData, results);
+            resultDatas.Add(new List<RaycastResult>(results));
+            results.Clear();
+        }
+
+        return resultDatas.SelectMany(list => list).Select(r => r.gameObject).ToList();
+    }
+    /// <summary>
+    /// デバイスに応じた座標を返す
+    /// </summary>
+    /// <returns></returns>
+    private Vector3? GetDeviceValue()
+    {
+        //マウスが接続ならマウス座標を返す
+        if (Mouse.current != null)
+        {
+            return Mouse.current.position.ReadValue();
+        }
+        //指の座標を返す
+        if (Touchscreen.current != null)
+        {
+            if (Touchscreen.current.touches.Count == 1)
+            {
+                return Touchscreen.current.primaryTouch.position.ReadValue();
+            }
+        }
+        //例外
+        return null;
     }
 }

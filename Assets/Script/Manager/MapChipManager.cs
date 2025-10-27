@@ -128,7 +128,7 @@ public class MapChipManager : SingletonMonoBehaviour<MapChipManager>
                 mapChipOb.SetId(_emptyId);
                 _emptyId = tmp;
 
-                if (_mapChipObjs.Any(x => x.Id == 0))
+                if (_mapChipObjs.Any(x => x.Id == _startId))
                 {
                     if (!MapChipInfoUtil.ActiveDecision(GetMapChipObj(_startId).RoadType, _startDirection))
                     {
